@@ -199,8 +199,8 @@ public class RobotConfig {
     } else {
       var wheelSpeeds = diffKinematics.toWheelSpeeds(speeds);
       return new SwerveModuleState[] {
-        new SwerveModuleState(wheelSpeeds.leftMetersPerSecond, new Rotation2d()),
-        new SwerveModuleState(wheelSpeeds.rightMetersPerSecond, new Rotation2d())
+        new SwerveModuleState(wheelSpeeds.left, new Rotation2d()),
+        new SwerveModuleState(wheelSpeeds.right, new Rotation2d())
       };
     }
   }
@@ -218,7 +218,7 @@ public class RobotConfig {
     } else {
       var wheelSpeeds =
           new DifferentialDriveWheelSpeeds(
-              states[0].speedMetersPerSecond, states[1].speedMetersPerSecond);
+              states[0].speed, states[1].speed);
       return diffKinematics.toChassisSpeeds(wheelSpeeds);
     }
   }
@@ -234,9 +234,9 @@ public class RobotConfig {
     chassisForceVector.setColumn(
         0,
         0,
-        chassisForces.vxMetersPerSecond,
-        chassisForces.vyMetersPerSecond,
-        chassisForces.omegaRadiansPerSecond);
+        chassisForces.vx,
+        chassisForces.vy,
+        chassisForces.omega);
 
     // Divide the chassis force vector by numModules since force is additive. All module forces will
     // add up to the chassis force

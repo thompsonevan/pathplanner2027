@@ -105,7 +105,7 @@ public class FollowPathCommand extends Command {
 
     controller.reset(currentPose, currentSpeeds);
 
-    double linearVel = Math.hypot(currentSpeeds.vxMetersPerSecond, currentSpeeds.vyMetersPerSecond);
+    double linearVel = Math.hypot(currentSpeeds.vx, currentSpeeds.vy);
 
     if (path.getIdealStartingState() != null) {
       // Check if we match the ideal starting state
@@ -157,7 +157,7 @@ public class FollowPathCommand extends Command {
     ChassisSpeeds targetSpeeds = controller.calculateRobotRelativeSpeeds(currentPose, targetState);
 
     double currentVel =
-        Math.hypot(currentSpeeds.vxMetersPerSecond, currentSpeeds.vyMetersPerSecond);
+        Math.hypot(currentSpeeds.vx, currentSpeeds.vy);
 
     PPLibTelemetry.setCurrentPose(currentPose);
     PathPlannerLogging.logCurrentPose(currentPose);
@@ -168,8 +168,8 @@ public class FollowPathCommand extends Command {
     PPLibTelemetry.setVelocities(
         currentVel,
         targetState.linearVelocity,
-        currentSpeeds.omegaRadiansPerSecond,
-        targetSpeeds.omegaRadiansPerSecond);
+        currentSpeeds.omega,
+        targetSpeeds.omega);
 
     output.accept(targetSpeeds, targetState.feedforwards);
 

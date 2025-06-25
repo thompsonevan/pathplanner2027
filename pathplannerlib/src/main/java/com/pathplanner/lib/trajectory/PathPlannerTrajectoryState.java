@@ -60,11 +60,11 @@ public class PathPlannerTrajectoryState implements Interpolatable<PathPlannerTra
     lerpedState.fieldSpeeds =
         new ChassisSpeeds(
             MathUtil.interpolate(
-                fieldSpeeds.vxMetersPerSecond, endVal.fieldSpeeds.vxMetersPerSecond, t),
+                fieldSpeeds.vx, endVal.fieldSpeeds.vx, t),
             MathUtil.interpolate(
-                fieldSpeeds.vyMetersPerSecond, endVal.fieldSpeeds.vyMetersPerSecond, t),
+                fieldSpeeds.vy, endVal.fieldSpeeds.vy, t),
             MathUtil.interpolate(
-                fieldSpeeds.omegaRadiansPerSecond, endVal.fieldSpeeds.omegaRadiansPerSecond, t));
+                fieldSpeeds.omega, endVal.fieldSpeeds.omega, t));
 
     lerpedState.heading = heading;
     lerpedState.linearVelocity = MathUtil.interpolate(linearVelocity, endVal.linearVelocity, t);
@@ -111,11 +111,11 @@ public class PathPlannerTrajectoryState implements Interpolatable<PathPlannerTra
 
     reversed.timeSeconds = timeSeconds;
     Translation2d reversedSpeeds =
-        new Translation2d(fieldSpeeds.vxMetersPerSecond, fieldSpeeds.vyMetersPerSecond)
+        new Translation2d(fieldSpeeds.vx, fieldSpeeds.vy)
             .rotateBy(Rotation2d.k180deg);
     reversed.fieldSpeeds =
         new ChassisSpeeds(
-            reversedSpeeds.getX(), reversedSpeeds.getY(), fieldSpeeds.omegaRadiansPerSecond);
+            reversedSpeeds.getX(), reversedSpeeds.getY(), fieldSpeeds.omega);
     reversed.pose = new Pose2d(pose.getTranslation(), pose.getRotation().plus(Rotation2d.k180deg));
     reversed.linearVelocity = -linearVelocity;
     reversed.feedforwards = feedforwards.reverse();

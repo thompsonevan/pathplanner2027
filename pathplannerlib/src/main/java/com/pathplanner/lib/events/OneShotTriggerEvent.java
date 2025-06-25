@@ -6,6 +6,7 @@ import edu.wpi.first.units.measure.Time;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.Commands;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 
 /** Event that will activate a trigger, then deactivate it the next loop */
 public class OneShotTriggerEvent extends Event {
@@ -21,8 +22,8 @@ public class OneShotTriggerEvent extends Event {
   public OneShotTriggerEvent(double timestamp, String name) {
     super(timestamp);
     this.name = name;
-    this.resetCommand =
-        Commands.waitSeconds(0)
+    this.resetCommand = 
+        new WaitCommand(0)
             .andThen(Commands.runOnce(() -> EventTrigger.setCondition(name, false)))
             .ignoringDisable(true);
   }

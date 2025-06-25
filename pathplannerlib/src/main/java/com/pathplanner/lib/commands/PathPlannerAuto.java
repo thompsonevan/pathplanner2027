@@ -12,7 +12,6 @@ import com.pathplanner.lib.trajectory.PathPlannerTrajectory;
 import com.pathplanner.lib.util.FileVersionException;
 import com.pathplanner.lib.util.FlippingUtil;
 import com.pathplanner.lib.util.PPLibTelemetry;
-import edu.wpi.first.hal.FRCNetComm.tResourceType;
 import edu.wpi.first.hal.HAL;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Translation2d;
@@ -126,7 +125,6 @@ public class PathPlannerAuto extends Command {
     this.autoTimer = new Timer();
 
     instances++;
-    HAL.report(tResourceType.kResourceType_PathPlannerAuto, instances);
   }
 
   /**
@@ -145,7 +143,6 @@ public class PathPlannerAuto extends Command {
     this.autoTimer = new Timer();
 
     instances++;
-    HAL.report(tResourceType.kResourceType_PathPlannerAuto, instances);
   }
 
   /**

@@ -34,7 +34,7 @@ public class PPLTVController extends LTVUnicycleController implements PathFollow
    * @throws IllegalArgumentException if maxVelocity &lt;= 0.
    */
   public PPLTVController(double dt, double maxVelocity) {
-    super(dt, maxVelocity);
+    super(dt);
   }
 
   /**
@@ -67,7 +67,7 @@ public class PPLTVController extends LTVUnicycleController implements PathFollow
    * @throws IllegalArgumentException if maxVelocity &lt;= 0 m/s or &gt;= 15 m/s.
    */
   public PPLTVController(Vector<N3> qelems, Vector<N2> relems, double dt, double maxVelocity) {
-    super(qelems, relems, dt, maxVelocity);
+    super(qelems, relems, dt);
   }
 
   /**
@@ -86,7 +86,7 @@ public class PPLTVController extends LTVUnicycleController implements PathFollow
         currentPose,
         targetState.pose,
         targetState.linearVelocity,
-        targetState.fieldSpeeds.omegaRadiansPerSecond);
+        targetState.fieldSpeeds.omega);
   }
 
   /**
